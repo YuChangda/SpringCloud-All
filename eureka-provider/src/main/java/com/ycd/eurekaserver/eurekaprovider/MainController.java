@@ -22,8 +22,8 @@ public class MainController {
     String port;
 
     @GetMapping("/getHi")
-    public String getHi(){
-        return "hi my port: "+port;
+    public String getHi() {
+        return "hi my port: " + port;
     }
 
     @GetMapping("/health")
@@ -36,20 +36,20 @@ public class MainController {
 
     @GetMapping("/getObj")
     public Person getObj() {
-        Person person = new Person(100,"xiaoliu");
+        Person person = new Person(100, "xiaoliu");
         return person;
     }
 
     @GetMapping("/getObj2")
     public Person getObj2(String name) {
-        Person person = new Person(100,name);
+        Person person = new Person(100, name);
         return person;
     }
 
     @PostMapping("/postLocation")
     public URI postParam(@RequestBody Person person, HttpServletResponse response) throws URISyntaxException {
-        URI uri = new URI("https://www.baidu.com/s?wd="+person.getName().trim());
-        response.addHeader("location",uri.toString());
+        URI uri = new URI("https://www.baidu.com/s?wd=" + person.getName().trim());
+        response.addHeader("location", uri.toString());
         return uri;
     }
 

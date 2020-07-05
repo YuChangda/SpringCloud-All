@@ -36,7 +36,7 @@ public class MainController3 {
 
 
     @GetMapping("/client8")
-    public Object client8(){
+    public Object client8() {
 
         String url = "http://provider/getObj";
 
@@ -45,21 +45,21 @@ public class MainController3 {
     }
 
     @GetMapping("/client9")
-    public Object client9(){
+    public Object client9() {
 
         String url = "http://provider/getObj2?name={1}";
 
-        Person person = restTemplate.getForObject(url, Person.class,"maliuliu666");
+        Person person = restTemplate.getForObject(url, Person.class, "maliuliu666");
         return person;
     }
 
     @GetMapping("/client10")
     public Object client10() {
         // 自动处理URL
-        String url ="http://provider/getObj2?name={name}";
+        String url = "http://provider/getObj2?name={name}";
         Map<String, String> map = Collections.singletonMap("name", "xiaobaby");
 
-        Person object = restTemplate.getForObject(url, Person.class,map);
+        Person object = restTemplate.getForObject(url, Person.class, map);
 
         return object;
     }
@@ -67,7 +67,7 @@ public class MainController3 {
     @GetMapping("/client11")
     public Object client11(HttpServletResponse response) throws IOException {
         // 自动处理URL
-        String url ="http://provider/postLocation";
+        String url = "http://provider/postLocation";
         Map<String, String> map = Collections.singletonMap("name", "huangguangyu");
 
         URI uri = restTemplate.postForLocation(url, map, Person.class);

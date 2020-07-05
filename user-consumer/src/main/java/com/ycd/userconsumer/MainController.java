@@ -3,6 +3,7 @@ package com.ycd.userconsumer;
 import com.ycd.userapi.Person;
 import com.ycd.userapi.UserApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,13 +19,16 @@ public class MainController {
     @Autowired
     ConsumerApi api;
 
+    @Value("${server.port}")
+    private String port;
+
     @GetMapping("/alive")
-    public String alive(){
-        return api.alive();
+    public String alive() {
+        return "Consumer:" + port + "->>>>" + api.alive();
     }
 
     @GetMapping("/postPerson")
-    public Person postPerson(@RequestParam Map<Integer,String> map) {
+    public Person postPerson(@RequestParam Map<Integer, String> map) {
         Person person = new Person();
         person.setId(Integer.parseInt(map.get("id")));
         person.setName("mmmmmm");
@@ -38,8 +42,9 @@ public class MainController {
         System.out.println(id);
         return api.getMap(id);
     }
+
     @GetMapping("/map3")
-    public Map<Integer, String> getMap3(@RequestParam Map<String, Object> map){
+    public Map<Integer, String> getMap3(@RequestParam Map<String, Object> map) {
 
 //        System.out.println(map);
         HashMap<String, Object> map1 = new HashMap<>(2);

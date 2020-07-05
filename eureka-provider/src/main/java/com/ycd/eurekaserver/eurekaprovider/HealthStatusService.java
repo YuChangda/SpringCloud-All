@@ -24,6 +24,7 @@ public class HealthStatusService implements HealthIndicator {
         return new Health.Builder().down().build();
 
     }
+
     public String getStatus() {
         // TODO Auto-generated method stub
         return this.status.toString();

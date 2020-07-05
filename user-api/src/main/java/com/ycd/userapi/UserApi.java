@@ -8,16 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * Created by ycd on 2020/6/27 2:19 下午
  */
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public interface UserApi {
 
     /**
-     *
      * @return
      */
-    @GetMapping("/alive")
+    @GetMapping("/user/alive")
     String alive();
 
-    @PostMapping("/postPerson")
+    @PostMapping("/user/postPerson")
     Person postPerson(@RequestBody Person person);
 }

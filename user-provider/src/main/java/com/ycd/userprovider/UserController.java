@@ -24,18 +24,18 @@ public class UserController implements UserApi {
 
     @Override
     public String alive() {
-        try {
-            System.out.println("准备睡");
-
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        int i = count.getAndIncrement();
-        System.out.println(port + "====第：" + i + "次调用");
-        return "port:" + port;
+//        try {
+//            System.out.println("准备睡");
+//
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//
+//        int i = count.getAndIncrement();
+//        System.out.println(port + "====第：" + i + "次调用");
+        return "provider port:" + port;
     }
 
     @Override

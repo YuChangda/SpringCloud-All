@@ -31,31 +31,31 @@ public class MainController {
     LoadBalancerClient lbc;
 
     @GetMapping("/getHi")
-    public String getHi(){
+    public String getHi() {
         return "hi";
     }
 
     @GetMapping("/client")
-    public String client(){
+    public String client() {
         List<String> services = client.getServices();
         services.forEach(System.out::println);
         return "hi";
     }
 
     @GetMapping("/client2")
-    public String client2(){
+    public String client2() {
         //具体服务名
         //List<InstanceInfo> instances = client2.getInstancesById("192.168.1.109:provider:80");
 
         //使用服务名，找列表
-        List<InstanceInfo> instances = client2.getInstancesByVipAddress("provider",false);
+        List<InstanceInfo> instances = client2.getInstancesByVipAddress("provider", false);
         for (InstanceInfo ins : instances) {
             System.out.println(ToStringBuilder.reflectionToString(ins));
         }
-        if (instances.size()>0) {
-            instances.forEach(e->{
+        if (instances.size() > 0) {
+            instances.forEach(e -> {
                 if (e.getStatus() == InstanceInfo.InstanceStatus.UP) {
-                    String url = "http://"+e.getHostName()+":"+e.getPort()+"/getHi";
+                    String url = "http://" + e.getHostName() + ":" + e.getPort() + "/getHi";
                     System.out.println(url);
                 }
 
@@ -66,14 +66,14 @@ public class MainController {
     }
 
     @GetMapping("/client3")
-    public String client3(){
+    public String client3() {
         // ribbon 完成客户端的负载均衡，过滤掉down了的节点
         ServiceInstance instance = lbc.choose("provider");
 
-        String url = "http://"+instance.getHost()+":"+instance.getPort()+"/getHi";
+        String url = "http://" + instance.getHost() + ":" + instance.getPort() + "/getHi";
         RestTemplate restTemplate = new RestTemplate();
-        String resp = restTemplate.getForObject(url,String.class);
-        System.out.println("resp: "+resp);
+        String resp = restTemplate.getForObject(url, String.class);
+        System.out.println("resp: " + resp);
         return "hi";
     }
 }

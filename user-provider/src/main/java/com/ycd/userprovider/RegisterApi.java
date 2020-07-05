@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 用户操作相关接口
- *
  */
 @RequestMapping("/User")
 public interface RegisterApi {

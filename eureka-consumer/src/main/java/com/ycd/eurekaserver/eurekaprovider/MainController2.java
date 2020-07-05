@@ -34,22 +34,22 @@ public class MainController2 {
     RestTemplate restTemplate;
 
     @GetMapping("/client6")
-    public String client6(){
+    public String client6() {
         // ribbon 完成客户端的负载均衡，过滤掉down了的节点
         ServiceInstance instance = lbc.choose("provider");
 
-        String url = "http://"+instance.getHost()+":"+instance.getPort()+"/getHi";
+        String url = "http://" + instance.getHost() + ":" + instance.getPort() + "/getHi";
 
-        String resp = restTemplate.getForObject(url,String.class);
+        String resp = restTemplate.getForObject(url, String.class);
         return resp;
     }
 
     @GetMapping("/client7")
-    public String client7(){
+    public String client7() {
 
         String url = "http://provider/getHi";
 
-        String resp = restTemplate.getForObject(url,String.class);
+        String resp = restTemplate.getForObject(url, String.class);
         return resp;
     }
 }

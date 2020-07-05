@@ -10,16 +10,17 @@ import java.util.Map;
 /**
  * Created by ycd on 2020/6/27 1:41 下午
  */
-@FeignClient(name = "user-provider")
+@FeignClient(name = "user-provider", fallback = UserProviderBack.class)
 public interface ConsumerApi extends UserApi {
 
     /**
      * 这里 getMapping 是给Feign看的 get请求 user-provider/getMap?id={1}
-     * @RequestParam("id") 也是给Feign看的
      *
-     * HttpClient Http协议
      * @param id
      * @return
+     * @RequestParam("id") 也是给Feign看的
+     * <p>
+     * HttpClient Http协议
      */
     @GetMapping("/getMap")
     Map<Integer, String> getMap(@RequestParam("id") Integer id);

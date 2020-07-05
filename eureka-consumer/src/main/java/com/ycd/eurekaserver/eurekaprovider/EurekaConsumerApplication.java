@@ -11,17 +11,17 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class EurekaConsumerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EurekaConsumerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaConsumerApplication.class, args);
+    }
 
-	@Bean("restTemplate")
-	@LoadBalanced
-	RestTemplate getRestTemplate(){
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.getInterceptors().add(new LoggingClientHttpRequestInterceptor());
-		return restTemplate;
-	}
+    @Bean("restTemplate")
+    @LoadBalanced
+    RestTemplate getRestTemplate() {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getInterceptors().add(new LoggingClientHttpRequestInterceptor());
+        return restTemplate;
+    }
 
 //	@Bean
 //	public IRule myIRule(){
